@@ -5,10 +5,10 @@ import Image from "next/image";
 
 export default function PlayerCard({ playerStats }: { playerStats: { [key: string]: any } }) {
     return (
-        <div className="w-min m-auto text-lg">
+        <div className="w-min text-lg">
             <div className="p-2 flex items-center">
                 <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <Image loader={() => playerStats.imageURL} src={playerStats.imageURL} width={0} height={0} alt={playerStats.name} className='h-full w-auto bg-white object-contain' />
+                    <Image loader={() => playerStats.imageURL} src={playerStats.imageURL} width={0} height={0} alt={playerStats.name} unoptimized className='h-full w-auto bg-white object-contain' />
                 </div>
                 <h1 className='ml-4'>{playerStats.name}</h1>
             </div>
