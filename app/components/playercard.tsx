@@ -1,21 +1,22 @@
+'use client';
 import React from 'react'
 import { Divider } from "@mui/material";
 import Image from "next/image";
 
-export default function PlayerCard() {
+export default function PlayerCard({ playerStats }: { playerStats: { [key: string]: any } }) {
     return (
-        <div className="w-min m-auto">
-            <div className="p-2 flex">
-                <div className="w-8 h-8 rounded-full overflow-hidden">
-                    <Image src={''} alt="yo" className='h-full object-contain' />
+        <div className="w-min m-auto text-lg">
+            <div className="p-2 flex items-center">
+                <div className="w-20 h-20 rounded-full overflow-hidden">
+                    <Image loader={() => playerStats.imageURL} src={playerStats.imageURL} width={0} height={0} alt={playerStats.name} className='h-full w-auto bg-white object-contain' />
                 </div>
-                <h1>TEST</h1>
+                <h1 className='ml-4'>{playerStats.name}</h1>
             </div>
             <Divider />
             <div className="p-2 flex">
-                <h2 className="">Points: 0</h2>
-                <h2>Goals: 0</h2>
-                <h2>Assists: 0</h2>
+                <h2 className="mr-8 text-nowrap">Points: {playerStats.points}</h2>
+                <h2 className="mr-8 text-nowrap">Goals: {playerStats.goals}</h2>
+                <h2 className="mr-8 text-nowrap">Assists: {playerStats.assists}</h2>
             </div>
         </div>
     )
