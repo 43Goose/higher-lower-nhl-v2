@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react'
 import { playerIds } from '../data/playerids';
-import PlayerCard from './playercard';
+import PlayerCardTest from './playercard-test';
 import { PlayerInfo } from '../types';
 import { Button, ThemeProvider } from '@mui/material';
 import { mainTheme } from '../themes';
@@ -19,7 +19,7 @@ export default function PlayerGenerator({ getPlayerFn, initialPlayer }: { getPla
     return (
         <ThemeProvider theme={mainTheme}>
             <div className='min-h-96 flex flex-col justify-center items-center'>
-                <PlayerCard playerStats={currentPlayer} />
+                <PlayerCardTest playerStats={currentPlayer} />
                 <Button
                     variant='outlined'
                     color='secondary'

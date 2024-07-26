@@ -1,23 +1,73 @@
-'use client';
 import React from 'react'
-import { Divider } from "@mui/material";
-import Image from "next/image";
+import { PlayerInfo } from '../types'
+import Image from 'next/image'
+import { ThemeProvider } from '@mui/material';
+import { mainTheme } from '../themes';
+import Button from './button';
 
-export default function PlayerCard({ playerStats }: { playerStats: { [key: string]: any } }) {
+type Props = {
+    player: PlayerInfo;
+    gameMode: string;
+}
+
+type ConditionalProps =
+    | {
+        type: 'known' | 'next';
+        knownPlayer?: never;
+    }
+    | {
+        type: 'unknown';
+        knownPlayer: PlayerInfo;
+    };
+
+export default function PlayerCard(props: Props & ConditionalProps) {
     return (
-        <div className="w-min text-lg">
-            <div className="p-2 flex items-center">
-                <div className="w-20 h-20 rounded-full overflow-hidden">
-                    <Image loader={() => playerStats.imageURL} src={playerStats.imageURL} width={0} height={0} alt={playerStats.name} unoptimized className='h-full w-auto bg-white object-contain' />
+        <div className='relative h-full w-1/3'>
+            <div className='absolute top-0 h-full overflow-hidden'>
+                <Image loader={() => props.player.imageURL} src={props.player.imageURL} width={0} height={0} alt={props.player.name} unoptimized className='h-full w-auto bg-white object-cover' />
+                <div className='absolute top-0 h-full w-full bg-black bg-opacity-50'></div>
+            </div>
+            {props.type === 'known' ? <KnownUI player={props.player} gameMode={props.gameMode} /> :
+                props.type === 'unknown' ? <UnknownUI player={props.player} knownPlayer={props.knownPlayer} gameMode={props.gameMode} /> :
+                    <NextUI player={props.player} />}
+        </div>
+    )
+}
+
+function KnownUI({ player, gameMode }: { player: PlayerInfo; gameMode: string; }) {
+    return (
+        <div className='absolute top-0 h-full w-full flex flex-col justify-center items-center'>
+            <h1 className='text-3xl font-bold'>{player.name}</h1>
+            <h2 className='text-lg font-bold'>has</h2>
+            <h1 className='text-5xl font-bold text-sec'>{player[gameMode]}</h1>
+            <h2 className='text-lg font-bold'>{'career ' + gameMode}</h2>
+        </div>
+    )
+}
+
+function UnknownUI({ player, knownPlayer, gameMode }: { player: PlayerInfo; knownPlayer: PlayerInfo; gameMode: string; }) {
+    return (
+        <ThemeProvider theme={mainTheme}>
+            <div className='absolute top-0 h-full w-full flex flex-col justify-center items-center'>
+                <h1 className='text-3xl font-bold'>{player.name}</h1>
+                <h2 className='text-lg font-bold'>has</h2>
+                <div className='w-80 my-2'>
+                    <Button variant='outlined'>HIGHER</Button>
                 </div>
-                <h1 className='ml-4'>{playerStats.name}</h1>
+                <div className='w-80 my-2'>
+                    <Button variant='outlined'>LOWER</Button>
+                </div>
+                <h2 className='text-lg font-bold'>{'career ' + gameMode + ' than ' + knownPlayer.name}</h2>
             </div>
-            <Divider />
-            <div className="p-2 flex">
-                <h2 className="mr-8 text-nowrap">Points: {playerStats.points}</h2>
-                <h2 className="mr-8 text-nowrap">Goals: {playerStats.goals}</h2>
-                <h2 className="mr-8 text-nowrap">Assists: {playerStats.assists}</h2>
-            </div>
+        </ThemeProvider>
+    )
+}
+
+function NextUI({ player }: { player: PlayerInfo; }) {
+    return (
+        <div className='absolute top-0 h-full w-full flex flex-col justify-center items-center'>
+            <h1 className='text-3xl font-bold'>{player.name}</h1>
+            <h2 className='text-lg font-bold'>has</h2>
         </div>
     )
 }

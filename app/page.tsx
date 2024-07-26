@@ -1,4 +1,4 @@
-import PlayerCard from "./components/playercard";
+import PlayerCardTest from "./components/playercard-test";
 import PlayerGenerator from "./components/playergenerator";
 import { playerIds } from "./data/playerids";
 import { PlayerInfo } from "./types";
@@ -25,7 +25,7 @@ export default async function Home() {
   const initialPlayer = await test(playerIds[Math.floor(Math.random() * playerIds.length)]);
 
   return (
-    <main className="min-h-screen bg-slate-900">
+    <main className="min-h-screen">
       <PlayerGenerator getPlayerFn={test} initialPlayer={initialPlayer} />
     </main>
   );
