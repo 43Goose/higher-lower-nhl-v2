@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { Suspense } from 'react'
 import { PlayerInfo } from '../types';
 import PlayerCards from './playercards';
 
@@ -10,7 +10,9 @@ export default function GameComponent({
 }) {
     return (
         <div className='w-full h-full overflow-x-hidden'>
-            <PlayerCards initialPlayers={initialPlayers} />
+            <Suspense>
+                <PlayerCards initialPlayers={initialPlayers} />
+            </Suspense>
         </div>
     )
 }

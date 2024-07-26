@@ -3,7 +3,7 @@ import { PlayerInfo } from '../types'
 import Image from 'next/image'
 import { ThemeProvider } from '@mui/material';
 import { mainTheme } from '../themes';
-import Button from './button';
+import Button from './site-button';
 
 type Props = {
     player: PlayerInfo;
