@@ -3,6 +3,7 @@ import { PlayerInfo } from '../types';
 import { playerIds } from '../data/playerids';
 import PlayerCards from '../components/playercards';
 import GameComponent from '../components/gamecomponent';
+export const dynamic = 'force-dynamic';
 
 export default async function Game() {
     const genInitialPlayers = async (initArray: PlayerInfo[], idList: number[]): Promise<PlayerInfo[]> => {
