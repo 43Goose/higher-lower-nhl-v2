@@ -1,7 +1,6 @@
 import React from 'react'
 import { PlayerInfo } from '../types';
 import { playerIds } from '../data/playerids';
-import PlayerCards from '../components/playercards';
 import GameComponent from '../components/gamecomponent';
 export const dynamic = 'force-dynamic';
 
@@ -18,8 +17,8 @@ export default async function Game() {
             id: player.playerId,
             name: `${player.firstName.default} ${player.lastName.default}`,
             goals: goals,
-            assists: points,
-            points: assists,
+            assists: assists,
+            points: points,
             imageURL: player.heroImage
         }
         return await genInitialPlayers([...initArray, stats], idList.filter(id => id !== randId));

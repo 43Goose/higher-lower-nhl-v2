@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { ThemeProvider } from '@mui/material';
 import { mainTheme } from '../themes';
 import Button from './site-button';
+import CountUp from 'react-countup';
 
 type Props = {
     player: PlayerInfo;
@@ -18,9 +19,12 @@ type ConditionalProps =
     | {
         type: 'unknown';
         knownPlayer: PlayerInfo;
+        inputFn: Function;
+        countup: boolean;
+        countEndFn: Function;
     };
 
-export default function PlayerCard(props: Props & ConditionalProps) {
+export default function PlayerCard({ ...props }: Props & ConditionalProps) {
     return (
         <div className='relative h-full w-1/3'>
             <div className='absolute top-0 h-full overflow-hidden'>
@@ -28,7 +32,7 @@ export default function PlayerCard(props: Props & ConditionalProps) {
                 <div className='absolute top-0 h-full w-full bg-black bg-opacity-50'></div>
             </div>
             {props.type === 'known' ? <KnownUI player={props.player} gameMode={props.gameMode} /> :
-                props.type === 'unknown' ? <UnknownUI player={props.player} knownPlayer={props.knownPlayer} gameMode={props.gameMode} /> :
+                props.type === 'unknown' ? <UnknownUI player={props.player} knownPlayer={props.knownPlayer} gameMode={props.gameMode} inputFn={props.inputFn} countup={props.countup} countEndFn={props.countEndFn} /> :
                     <NextUI player={props.player} />}
         </div>
     )
@@ -45,19 +49,36 @@ function KnownUI({ player, gameMode }: { player: PlayerInfo; gameMode: string; }
     )
 }
 
-function UnknownUI({ player, knownPlayer, gameMode }: { player: PlayerInfo; knownPlayer: PlayerInfo; gameMode: string; }) {
+function UnknownUI({
+    player,
+    knownPlayer,
+    gameMode,
+    inputFn,
+    countup,
+    countEndFn
+}: {
+    player: PlayerInfo;
+    knownPlayer: PlayerInfo;
+    gameMode: string;
+    inputFn: Function;
+    countup: boolean;
+    countEndFn: Function
+}) {
     return (
         <ThemeProvider theme={mainTheme}>
             <div className='absolute top-0 h-full w-full flex flex-col justify-center items-center'>
                 <h1 className='text-3xl font-bold'>{player.name}</h1>
                 <h2 className='text-lg font-bold'>has</h2>
-                <div className='w-80 my-2'>
-                    <Button variant='outlined'>HIGHER</Button>
-                </div>
-                <div className='w-80 my-2'>
-                    <Button variant='outlined'>LOWER</Button>
-                </div>
-                <h2 className='text-lg font-bold'>{'career ' + gameMode + ' than ' + knownPlayer.name}</h2>
+                {countup ? <CountUp end={player[gameMode]} duration={2} onEnd={() => countEndFn()} className='text-sec text-5xl font-bold' /> :
+                    <div>
+                        <div className='w-80 my-2'>
+                            <Button variant='outlined' onClick={() => inputFn('higher')} >HIGHER</Button>
+                        </div>
+                        <div className='w-80 my-2'>
+                            <Button variant='outlined' onClick={() => inputFn('lower')}>LOWER</Button>
+                        </div>
+                    </div>}
+                <h2 className='text-lg font-bold'>{'career ' + gameMode + (countup ? '' : ' than ' + knownPlayer.name)}</h2>
             </div>
         </ThemeProvider>
     )

@@ -1,4 +1,3 @@
-import PlayerCardTest from "./components/playercard-test";
 import PlayerGenerator from "./components/playergenerator";
 import { playerIds } from "./data/playerids";
 import { PlayerInfo } from "./types";

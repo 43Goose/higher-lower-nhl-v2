@@ -9,7 +9,7 @@ for abr in abbreviations:
     res = requests.get(f"https://api-web.nhle.com/v1/roster/{abr}/20242025")
     response = json.loads(res.text)
     
-    for player in response["forwards"] + response["defensemen"] + response["goalies"]:
+    for player in response["forwards"] + response["defensemen"]:
         statsRes = requests.get(f"https://api-web.nhle.com/v1/player/{str(player["id"])}/landing")
         stats = json.loads(statsRes.text)
         if "careerTotals" in stats:

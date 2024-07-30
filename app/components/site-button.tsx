@@ -1,16 +1,15 @@
 import React, { ButtonHTMLAttributes } from 'react'
 
-type ButtonProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>
+type ButtonProps = {
+    children: React.ReactNode,
+    variant?: 'outlined' | 'contained'
+}
 
 export default function Button({
     children,
     variant,
     ...props
-}: {
-    children: React.ReactNode;
-    variant: 'outlined' | 'contained';
-    props?: ButtonProps
-}) {
+}: ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>) {
 
     const outlinedStyles = 'text-sec border-2 hover:bg-opacity-10';
     const containedStyles = 'bg-sec';
