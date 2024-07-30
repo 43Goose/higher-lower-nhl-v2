@@ -19,7 +19,6 @@ export default function GameComponent({
     const [roundState, setRoundState] = useState<'def' | 'win' | 'lose'>('def');
     const [gameOver, setGameOver] = useState(false);
     const [highScore, setHighScore] = useState(userHighScore !== undefined ? userHighScore : undefined);
-    console.log(userHighScore);
 
     const handleRoundResult = async (res: boolean) => {
         if (res) {
