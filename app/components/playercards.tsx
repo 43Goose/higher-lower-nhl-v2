@@ -62,7 +62,7 @@ export default function PlayerCards({
     }
 
     return (
-        <div className={`h-full w-[150%] flex ${animate ? '-translate-x-1/3 transition-transform duration-300 delay-300' : ''}`}>
+        <div className={`h-[150%] w-full flex flex-col md:w-[150%] md:h-full md:flex-row ${animate ? '-translate-y-1/3 transition-transform duration-300 delay-300 md:-translate-x-1/3 md:translate-y-0' : ''}`}>
             <PlayerCard player={players[0]} type='known' gameMode={gameMode} />
             <PlayerCard player={players[1]} type='unknown' knownPlayer={players[0]} countup={countup} countEndFn={handleRoundEnd} gameMode={gameMode} inputFn={handleInput} />
             <PlayerCard player={players[2]} type='next' gameMode={gameMode} />

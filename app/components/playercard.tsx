@@ -26,7 +26,7 @@ type ConditionalProps =
 
 export default function PlayerCard({ ...props }: Props & ConditionalProps) {
     return (
-        <div className='relative h-full w-1/3'>
+        <div className='relative h-1/3 w-full md:h-full md:w-1/3'>
             <div className='absolute top-0 h-full overflow-hidden'>
                 <Image loader={() => props.player.imageURL} src={props.player.imageURL} width={0} height={0} alt={props.player.name} unoptimized className='h-full w-auto bg-white object-cover' />
                 <div className='absolute top-0 h-full w-full bg-black bg-opacity-50'></div>

@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react'
+import React, { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 
 type ButtonProps = {
     children: React.ReactNode,
@@ -9,7 +9,7 @@ export default function Button({
     children,
     variant,
     ...props
-}: ButtonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'className'>) {
+}: ButtonProps & Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'className'>) {
 
     const outlinedStyles = 'text-sec border-2 hover:bg-opacity-10';
     const containedStyles = 'bg-sec';
@@ -17,11 +17,11 @@ export default function Button({
     const variantStyles = variant === 'outlined' ? outlinedStyles : variant === 'contained' ? containedStyles : defaultStyles;
 
     return (
-        <button
-            className={`w-full rounded-full font-bold p-3 transition-colors hover:bg-cyan-600 active:scale-95 ${variantStyles}`}
+        <a
+            className={`block w-full rounded-full font-bold p-3 text-center transition-colors hover:bg-cyan-600 hover:cursor-pointer active:scale-95 ${variantStyles}`}
             {...props}
         >
             {children}
-        </button>
+        </a>
     )
 }
