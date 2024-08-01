@@ -7,6 +7,7 @@ import { waitForSeconds } from '../game/utils';
 import EndGameScreen from './endgame-screen';
 import Scorebar from './scorebar';
 import { setHighScoreCookie } from '../data/cookies';
+import PlayercardsLoading from './fallbacks/playercards-loading';
 
 export default function GameComponent({
     initialPlayers,
@@ -43,7 +44,7 @@ export default function GameComponent({
 
     return (
         <div className='relative w-full h-full overflow-hidden'>
-            <Suspense>
+            <Suspense fallback={<PlayercardsLoading />}>
                 <PlayerCards initialPlayers={initialPlayers} roundEndFn={handleRoundResult} />
             </Suspense>
             <VsBadge roundState={roundState} />
