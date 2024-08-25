@@ -3,6 +3,7 @@
 import { PlayerInfo } from "../types";
 
 export async function getPlayer(id: number) {
+    // Grabs player with given ID from nhl api
     const player = await fetch(`https://api-web.nhle.com/v1/player/${id}/landing`).then(res => res.json());
     let stats: PlayerInfo = {
         id: player.id,
@@ -18,7 +19,7 @@ export async function getPlayer(id: number) {
         stats.assists = Object.keys(player.careerTotals.regularSeason).includes('assists') ? player.careerTotals.regularSeason.assists : 0;
         stats.points = Object.keys(player.careerTotals.regularSeason).includes('points') ? player.careerTotals.regularSeason.points : 0;
     } catch (error) {
-        console.log(`${player.firstName.default} ${player.lastName.default}`);
+        console.log(`Error with player: ${player.firstName.default} ${player.lastName.default}`);
     }
 
     return stats;

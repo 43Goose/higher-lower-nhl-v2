@@ -23,10 +23,11 @@ export default function PlayerCards({
     const gameMode = params.has('gameMode') ? params.get('gameMode') as string : 'points';
 
     const handleRoundEnd = async () => {
+        // Runs player card animations and triggers the games round end function
         if (gameOver) {
             roundEndFn(false);
             return;
-        } // TODO - end game stuff
+        }
         roundEndFn(true);
         setAnimate(true);
 
@@ -42,6 +43,7 @@ export default function PlayerCards({
     }
 
     const handleInput = (input: 'higher' | 'lower') => {
+        // Runs countup animation and checks if the users input was correct
         setCountup(true);
         switch (input) {
             case 'higher':

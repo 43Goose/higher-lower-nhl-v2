@@ -13,8 +13,12 @@ for abr in abbreviations:
         statsRes = requests.get(f"https://api-web.nhle.com/v1/player/{str(player["id"])}/landing")
         stats = json.loads(statsRes.text)
         if "careerTotals" in stats:
-            print(f"{stats["firstName"]["default"]} {stats["lastName"]["default"]} - {stats["fullTeamName"]["default"]}")
-            ids.append(str(player["id"]))
+            try:
+                if stats["careerTotals"]["regularSeason"]["points"] >= 50:
+                    print(f"{stats["firstName"]["default"]} {stats["lastName"]["default"]} - {stats["fullTeamName"]["default"]}")
+                    ids.append(str(player["id"]))
+            except KeyError as error:
+                print(f"ERROR: {stats["firstName"]["default"]} {stats["lastName"]["default"]} - {stats["fullTeamName"]["default"]} does not have key {error}")
     
 f = open("player-ids.txt", "w")
 f.write(', '.join(ids))
