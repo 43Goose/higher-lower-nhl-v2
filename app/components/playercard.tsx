@@ -69,7 +69,7 @@ function UnknownUI({
             <div className='absolute top-0 h-full w-full flex flex-col justify-center items-center'>
                 <h1 className='text-3xl font-bold'>{player.name}</h1>
                 <h2 className='text-lg font-bold'>has</h2>
-                {countup ? <CountUp end={player[gameMode]} duration={2} onEnd={() => countEndFn()} className='text-sec text-5xl font-bold' /> :
+                {countup ? <CountUp end={player[gameMode]} duration={2 * Math.min(1, (player[gameMode] / 200))} onEnd={() => countEndFn()} className='text-sec text-5xl font-bold' /> :
                     <div>
                         <div className='w-80 my-2'>
                             <Button variant='outlined' onClick={() => inputFn('higher')} >HIGHER</Button>
