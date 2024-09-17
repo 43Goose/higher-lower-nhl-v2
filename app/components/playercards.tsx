@@ -26,7 +26,7 @@ export default function PlayerCards({
         if (gameOver) {
             roundEndFn(false);
             return;
-        } // TODO - end game stuff
+        }
         roundEndFn(true);
         setAnimate(true);
 

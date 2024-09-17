@@ -18,10 +18,10 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen">
-      <div className="absolute top-0 h-screen w-full overflow-hidden">
-        <Image src={rogersArena} alt="Rogers Arena" className="h-full w-full object-cover" />
-        <div className="absolute h-full w-full top-0 bg-black bg-opacity-40"></div>
+    <main className="min-h-dvh">
+      <div className="absolute top-0 h-dvh w-full overflow-hidden">
+        <Image src={rogersArena} alt="Rogers Arena" className="h-dvh w-full object-cover" />
+        <div className="absolute h-dvh w-full top-0 bg-black bg-opacity-40"></div>
       </div>
       <div className="relative h-screen w-full flex flex-col items-center justify-center gap-8 md:gap-12">
         <div className={`${fugaz.className} w-min flex items-center justify-center gap-2 text-2xl md:scale-150`}>

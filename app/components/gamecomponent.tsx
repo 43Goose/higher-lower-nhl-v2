@@ -43,7 +43,7 @@ export default function GameComponent({
     }
 
     return (
-        <div className='relative w-full h-full overflow-hidden'>
+        <div className='relative w-full h-dvh overflow-hidden'>
             <Suspense fallback={<PlayercardsLoading />}>
                 <PlayerCards initialPlayers={initialPlayers} roundEndFn={handleRoundResult} />
             </Suspense>

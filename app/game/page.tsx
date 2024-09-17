@@ -11,7 +11,7 @@ export default async function Game() {
 
 
     return (
-        <main className='w-screen h-screen'>
+        <main className='w-screen h-dvh'>
             <Suspense fallback={<GameLoading />}>
                 <GameShell />
             </Suspense>
