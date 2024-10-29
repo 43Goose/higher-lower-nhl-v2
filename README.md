@@ -17,3 +17,14 @@ I'm Goose. A self-taught developer with experience in a multitude of languages. 
 
 [![Contact](https://img.shields.io/badge/Contact-goose.dvlpr@gmail.com-EA4335?labelColor=222&style=for-the-badge&logo=gmail&logoColor=FFF&link=mailto:goose.dvlpr@gmail.com)](mailto:goose.dvlpr@gmail.com)
 
+## Contributing
+
+Contributions are always welcome!
+
+Feel free to use any of the source code for your own projects as well so long as your project is open-source.
+
+
+## License
+
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/)
+
