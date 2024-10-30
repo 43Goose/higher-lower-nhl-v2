@@ -8,8 +8,6 @@ import GameLoading from '../components/fallbacks/game-loading';
 export const dynamic = 'force-dynamic';
 
 export default async function Game() {
-
-
     return (
         <main className='w-screen h-dvh'>
             <Suspense fallback={<GameLoading />}>
